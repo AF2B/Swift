@@ -393,3 +393,83 @@ let reducedNames = namesForReduce.reduce("") { (result, name) -> String in
     return result + name
 }
 print(reducedNames)
+
+// Safety & Scope
+// Optional Chaining -- Represents a way to access the properties and methods of a optional value.
+struct PersonOptionalChaining {
+    var name: String
+    var age: Int
+    var height: Double
+    var weight: Float
+    var isStudent: Bool
+    var address: Address?
+}
+
+struct Address {
+    var street: String
+    var number: Int
+    var city: String
+    var state: String
+    var country: String
+}
+
+let address = Address(street: "Street", number: 123, city: "City", state: "State", country: "Country")
+let personOptionalChaining = PersonOptionalChaining(name: "John", age: 26, height: 1.70, weight: 70.5, isStudent: true, address: address)
+
+if let personAddress = personOptionalChaining.address {
+    print("Address: \(personAddress)")
+} else {
+    print("Address is nil")
+}
+
+if let personAddress = personOptionalChaining.address?.street {
+    print("Address: \(personAddress)")
+} else {
+    print("Address is nil")
+}
+
+// Nil-Coalescing Operator - Represents a way to unwrap an optional value or return a default value.
+let personNameNilCoalescingOperator: String? = "John"
+let personNameNilCoalescingOperator2: String? = nil
+let personNameNilCoalescingOperator3: String? = "Borba"
+
+let personNameNilCoalescingOperatorResult = personNameNilCoalescingOperator ?? "Unknown"
+let personNameNilCoalescingOperatorResult2 = personNameNilCoalescingOperator2 ?? "Unknown"
+let personNameNilCoalescingOperatorResult3 = personNameNilCoalescingOperator3 ?? "Unknown"
+
+print(personNameNilCoalescingOperatorResult)
+print(personNameNilCoalescingOperatorResult2)
+print(personNameNilCoalescingOperatorResult3)
+
+// Optional Try - Represents a way to execute a throwing function and handle the error.
+enum LoginErrorOptionalTry: Error {
+    case wrongLogin
+    case wrongPassword
+    case noInternetConnection
+}
+
+func loginOptionalTry(userName: String, password: String) throws -> Bool {
+    if checkInternetConnection() {
+        if userName == "John" {
+            if password == "123456" {
+                return true
+            } else {
+                throw LoginErrorOptionalTry.wrongPassword
+            }
+        } else {
+            throw LoginErrorOptionalTry.wrongLogin
+        }
+    } else {
+        throw LoginErrorOptionalTry.noInternetConnection
+    }
+}
+
+func checkInternetConnectionOptionalTry() -> Bool {
+    return true
+}
+
+if let result = try? loginOptionalTry(userName: "John", password: "123456") {
+    print("Login success: \(result)")
+} else {
+    print("Login error")
+}
