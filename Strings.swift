@@ -130,3 +130,14 @@ print(numberToString)
 let strToLines = "Hello\nSwift!"
 let lines = strToLines.components(separatedBy: .newlines)
 print(lines)
+
+// 22. String from array of lines
+// To convert an array of lines to a string.
+let linesToString = lines.joined(separator: "\n")
+print(linesToString)
+
+// 23. String to array of words
+// To convert a string to an array of words with whitespaces.
+let strToWords = "Hello, Swift!"
+let words = strToWords.components(separatedBy: .whitespaces)
+print(words)
