@@ -349,3 +349,47 @@ func processFile() {
 }
 
 processFile()
+
+// Loops
+// For-in
+let namesForIn: [String] = ["John", "Borba", "Nilza"]
+for name in namesForIn {
+    print(name)
+}
+
+// While
+var namesWhile: [String] = ["John", "Borba", "Nilza"]
+while namesWhile.count > 0 {
+    print(namesWhile.removeFirst())
+}
+
+// Repeat-While
+var namesRepeatWhile: [String] = ["John", "Borba", "Nilza"]
+repeat {
+    print(namesRepeatWhile.removeFirst())
+} while namesRepeatWhile.count > 0
+
+// For enumerated
+let namesForEnumerated: [String] = ["John", "Borba", "Nilza"]
+for (index, name) in namesForEnumerated.enumerated() {
+    print("\(index): \(name)")
+}
+
+// Data Structures and Algorithms
+let namesForFilter: [String] = ["John", "Borba", "Nilza"]
+let filteredNames = namesForFilter.filter { (name) -> Bool in
+    return name.count > 4
+}
+print(filteredNames)
+
+let namesForMap: [String] = ["John", "Borba", "Nilza"]
+let mappedNames = namesForMap.map { (name) -> String in
+    return name.uppercased()
+}
+print(mappedNames)
+
+let namesForReduce: [String] = ["John", "Borba", "Nilza"]
+let reducedNames = namesForReduce.reduce("") { (result, name) -> String in
+    return result + name
+}
+print(reducedNames)
