@@ -150,3 +150,18 @@ print(arrayJoinedString)
 let arrayEnumerated = [1, 2, 3, 4, 5]
 let arrayEnumeratedTuples = Array(arrayEnumerated.enumerated())
 print(arrayEnumeratedTuples)
+
+// 21. Array enumerated map
+// To get an array of tuples with the index and the element mapped.
+let arrayEnumeratedMap = [1, 2, 3, 4, 5]
+let arrayEnumeratedMapTuples = arrayEnumeratedMap.enumerated().map { (index, element) in
+    return (index, element * 2)
+}
+print(arrayEnumeratedMapTuples)
+
+// 22. Array enumerated forEach
+// To iterate over an array of tuples with the index and the element.
+let arrayEnumeratedForEach = [1, 2, 3, 4, 5]
+arrayEnumeratedForEach.enumerated().forEach { (index, element) in
+    print(index, element)
+}
