@@ -518,3 +518,21 @@ student.changeName(name: "Borba")
 student.changeName(name: "Borba", lastName: "André")
 
 student.printStudent()
+
+// Extensions - Represents a way to add new functionality to an existing class, structure, enumeration, or protocol type.
+extension String {
+    func printString() {
+        print(self)
+    }
+}
+
+extension Student {
+    func printName() {
+        print(self.name)
+    }
+}
+
+let string = "John"
+string.printString()
+
+student.printName()
