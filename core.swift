@@ -44,6 +44,10 @@ let namesSet: Set<String> = ["John", "Borba", "Nilza"] // Set Collection doesn't
 
 // Tuples - Represents a finite ordered list of elements. Each element can have a different type and can be accessed by index or name.
 var personTuple: (String, Int, Double, Float, Bool) = ("John", 26, 1.70, 70.5, true)
+let tupleName = personTuple.0
+print("personName: \(tupleName)")
+let tupleAge = personTuple.1
+print("personAge: \(tupleAge)")
 
 // Optionals - Represents a variable that can have a value or not.
 var nameOptional: String? = "John"
