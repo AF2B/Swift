@@ -536,3 +536,15 @@ let string = "John"
 string.printString()
 
 student.printName()
+
+// Subscripts - Represents a way to access the elements of a collection, sequence or list.
+struct WeekSubscript {
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    
+    subscript(index: Int) -> String {
+        return days[index]
+    }
+}
+
+let weekSubscript = WeekSubscript()
+print(weekSubscript[0])
