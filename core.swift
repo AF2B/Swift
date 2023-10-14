@@ -548,3 +548,8 @@ struct WeekSubscript {
 
 let weekSubscript = WeekSubscript()
 print(weekSubscript[0])
+
+// Typealias - Represents an alias for a type.
+typealias PersonTypeSubscript = PersonStruct // We can use the typealias to create an alias for a type.
+var personTypeSubscript: PersonTypeSubscript = PersonTypeSubscript(name: "John", age: 26, height: 1.70, weight: 70.5, isStudent: true)
+personTypeSubscript.walk()
