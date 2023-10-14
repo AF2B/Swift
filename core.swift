@@ -477,3 +477,44 @@ if let result = try? loginOptionalTry(userName: "John", password: "123456") {
 } else {
     print("Login error")
 }
+
+// Mutating Methods - Represents a way to change the value of a property inside a struct or enum.
+struct Student {
+    var name: String
+    var grade: Int
+    var isActive: Bool
+
+    mutating func graduate() {
+        self.grade += 1
+    }
+
+    mutating func activate() {
+        self.isActive = true
+    }
+
+    mutating func deactivate() {
+        self.isActive = false
+    }
+
+    mutating func changeName(name: String) {
+        self.name = name
+    }
+
+    mutating func changeName(name: String, lastName: String) {
+        self.name = "\(name) \(lastName)"
+    }
+
+    func printStudent() {
+        print("Name: \(self.name)")
+        print("Grade: \(self.grade)")
+        print("Is Active: \(self.isActive)")
+    }
+}
+
+var student = Student(name: "John", grade: 1, isActive: true)
+student.activate()
+student.graduate()
+student.changeName(name: "Borba")
+student.changeName(name: "Borba", lastName: "André")
+
+student.printStudent()
