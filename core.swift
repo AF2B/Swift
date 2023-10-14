@@ -553,3 +553,16 @@ print(weekSubscript[0])
 typealias PersonTypeSubscript = PersonStruct // We can use the typealias to create an alias for a type.
 var personTypeSubscript: PersonTypeSubscript = PersonTypeSubscript(name: "John", age: 26, height: 1.70, weight: 70.5, isStudent: true)
 personTypeSubscript.walk()
+
+// switch
+let number = 10
+switch number {
+case 0:
+    print("Zero")
+case 1:
+    print("One")
+case 2:
+    print("Two")
+default:
+    print("Unknown")
+}
