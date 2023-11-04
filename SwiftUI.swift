@@ -600,3 +600,45 @@ struct PersonView: View {
 #Preview {
     ContentView("My second iPhone")
 }
+
+// Text
+struct ContentView: View {
+    let today = Date()
+
+    var body: some View {
+        Text(today.formatted(date: .abbreviated, time: .omitted))
+        // output: Nov 4, 2023
+    }
+
+    var body: some View {
+        Text(today, style: .timer)
+        // output: 0:00, 0:01, 0:02, 0:03, 0:04, 0:05, ...
+    }
+}
+
+// Modifiers
+// .onAppear and .onDisappear
+// .onAppear is a modifier that triggers an action when the view appears.
+// .onDisappear is a modifier that triggers an action when the view disappears.
+
+// Custom Modifiers
+struct MyModifier: ViewModifier {
+    var size: CGFloat
+
+    init(size: CGFloat) {
+        self.size = size
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.blue)
+            .font(Font.system(size: size).fontWeight(.semibold))
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        Text("SwiftUI")
+            .modifier(MyModifier(size: 20))
+    }
+}
