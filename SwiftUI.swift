@@ -907,3 +907,24 @@ struct ContentView: View {
         }
     }
 }
+
+@Observable class ApplicationData {
+    var title: String = "Default Title"
+    var titleInput: String = ""
+}
+
+struct ContentView: View {
+    var appData = ApplicationData()
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text(appData.title)
+                .padding(10)
+            Button {
+                appData.title = "New Title"
+            } label: {
+                Text(Text("Save"))
+            }
+        }
+    }
+}
