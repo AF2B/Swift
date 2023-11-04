@@ -672,3 +672,17 @@ struct ContentView: View {
         }
     }
 }
+
+// Grid
+
+struct ContentView: View {
+    var body: some View {
+        Grid {
+            GridRow {
+                Text("SwiftUI")
+                Text("SwiftUI")
+                Text("SwiftUI")
+            }
+        }
+    }
+}
