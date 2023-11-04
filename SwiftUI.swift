@@ -746,3 +746,39 @@ struct ContentView: View {
         .buttonStyle(MyButton())
     }
 }
+
+// TextField
+struct ContentView: View {
+    @State private var title: String = "Default title"
+    @State private var titleInput: String = ""
+
+    var body: some View {
+        VStack(spacing: 15) {
+            Text(title)
+                .lineLimit(1)
+                .padding()
+                .background(Color.yellow)
+            TextField("Insert a new Title", text: $titleInput)
+                .textFieldStyle(.roundedBorder)
+                .submitLabel(.continue)
+                .onSubmit {
+                    assignTitle()
+                }
+            HStack {
+                Spacer()
+                Button("Save") {
+                    assignTitle()
+                }
+            }
+            Spacer()
+        }
+        .padding()
+    }
+
+    func assignTitle() {
+        title = titleInput
+        titleInput = ""
+    }
+}
+
+// We can create onSubmit in TextField to assign a function to the return key of the keyboard.
