@@ -605,6 +605,7 @@ struct CoffeeShop {
 var coffeeShop = CoffeeShop(name: "Starbucks", coffee: "Cappuccino")
 coffeeShop.coffee = "Latte"
 
+// More about closures
 let addiction: (Int, Int) -> Int = { (number: Int, number2: Int) -> Int in
     return number + number2
 }
