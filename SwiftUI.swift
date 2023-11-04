@@ -625,3 +625,46 @@ struct GenericStructPerson<T> {
         print("My name is \(name) and I'm \(age) years old.")
     }
 }
+
+// Error Handling
+
+struct Stock {
+    var name: String
+    var price: Double
+}
+
+enum StockError: Error {
+    case negativePrice
+    case invalidName
+}
+
+class StockManager {
+    var stocks: [Stock] = [Stock]()
+    func addStock(name: String, price: Double) throws {
+        guard price > 0 else {
+            throw StockError.negativePrice
+        }
+        guard name.count > 0 else {
+            throw StockError.invalidName
+        }
+        let stock: Stock = Stock(name: name, price: price)
+        stocks.append(stock)
+    }
+}
+
+let stockManager = StockManager()
+
+do {
+    try stockManager.addStock(name: "Apple", price: 3000)
+    try stockManager.addStock(name: "Google", price: 1500)
+    try stockManager.addStock(name: "Microsoft", price: 100)
+    try stockManager.addStock(name: "Facebook", price: 300)
+    try stockManager.addStock(name: "Amazon", price: 2500)
+    try stockManager.addStock(name: "TikTok", price: 0)
+} catch StockError.negativePrice {
+    print("Price can't be negative.")
+} catch StockError.invalidName {
+    print("Name can't be empty.")
+} catch {
+    print("Unknown error.")
+}
