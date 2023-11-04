@@ -588,3 +588,15 @@ struct PersonView: View {
         }
     }
 }
+
+// We can add more preview macros to our code
+
+#Preview {
+    ContentView("My iPhone", traits: .landscapeLeft)
+}
+
+// Or we can create more than one preview.
+
+#Preview {
+    ContentView("My second iPhone")
+}
