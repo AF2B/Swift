@@ -686,3 +686,41 @@ struct ContentView: View {
         }
     }
 }
+
+// View Builder
+
+struct ContentView: View {
+    var body: some View {
+        VStack {
+            Text("View Title")
+            getView()
+        }
+    }
+
+    @ViewBuilder
+    func getView() -> some View {
+        let valid = true
+
+        if valid {
+            Image(systemName: "keyboard")
+        } else {
+            EmptyView()
+        }
+    }
+}
+
+// @Environment
+struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme // takes the color scheme from the environment
+    @Environment(\.dismiss) var dismiss // dismisses the view
+    @Environment(\.presentationMode) var presentationMode // manages the presentation of a view
+    @Environment(\.sizeCategory) var sizeCategory // takes the size category from the environment
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass // takes the horizontal size class from the environment
+    @Environment(\.verticalSizeClass) var verticalSizeClass // takes the vertical size class from the environment
+
+    var body: some View {
+        Text("SwiftUI")
+            .foregroundColor(colorScheme == .dark ? Color.yellow : Color.blue)
+            .symbolVariant(colorScheme == .dark ? .fill : .circle)
+    }
+}
