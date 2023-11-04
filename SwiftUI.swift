@@ -783,6 +783,7 @@ struct ContentView: View {
 
 // We can create onSubmit in TextField to assign a function to the return key of the keyboard.
 
+// TextEditor
 struct ContentView: View {
     @State private var text: String = ""
 
@@ -792,5 +793,41 @@ struct ContentView: View {
             .lineSpacing(10)
             .autocorrectionDisabled(true)
             .padding(8) 
+    }
+}
+
+// Toggle and ToggleStyle
+
+struct MyStyleToggle: ToggleStyle {
+    func makeBody(configuration: MyStyleToggle.Configuration) -> some View {
+        HStack(alignment: .center) {
+            configuration.label
+            Spacer()
+            Image(systemName: "checkmark.rectangle.fill")
+                .font(.largeTitle)
+                .foregroundStyle(configuration.isOn ? .green : .gray)
+                .onTapGesture {
+                    configuration.$isOn.wrappedValue.toggle()
+                }
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var isOn: Bool = false
+
+    var body: some View {
+        Toggle("SwiftUI", isOn: $isOn)
+            .toggleStyle(MyStyleToggle())
+    }
+}
+
+struct ContentView: View {
+    @State private var isOn: Bool = false
+
+    var body: some View {
+        Toggle(isOn: $isOn) {
+            Text("SwiftUI")
+        }
     }
 }
