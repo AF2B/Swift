@@ -638,16 +638,34 @@ enum StockError: Error {
     case invalidName
 }
 
+class StockErrorImplement: Error {
+    var error: StockError
+
+    var message: String {
+        switch error {
+        case .negativePrice:
+            return "Price can't be negative."
+        case .invalidName:
+            return "Name can't be empty."
+        }
+    }
+
+    init(error: StockError) {
+        self.error = error
+    }
+}
+
 class StockManager {
-    var stocks: [Stock] = [Stock]()
+    var stocks: [Stock] = []
+
     func addStock(name: String, price: Double) throws {
         guard price > 0 else {
             throw StockError.negativePrice
         }
-        guard name.count > 0 else {
+        guard !name.isEmpty else {
             throw StockError.invalidName
         }
-        let stock: Stock = Stock(name: name, price: price)
+        let stock = Stock(name: name, price: price)
         stocks.append(stock)
     }
 }
@@ -661,10 +679,7 @@ do {
     try stockManager.addStock(name: "Facebook", price: 300)
     try stockManager.addStock(name: "Amazon", price: 2500)
     try stockManager.addStock(name: "TikTok", price: 0)
-} catch StockError.negativePrice {
-    print("Price can't be negative.")
-} catch StockError.invalidName {
-    print("Name can't be empty.")
-} catch {
-    print("Unknown error.")
+} catch let error as StockError {
+    let errorImplement = StockErrorImplement(error: error)
+    print(errorImplement.message)
 }
