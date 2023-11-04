@@ -519,8 +519,18 @@ struct ContentView: View {
 struct PersonModel: Identifiable {
     var id = UUID()
     var name: String
-    var age: Int
+    var age: Int {
+        get {
+            return self.age
+        }
+        set {
+            self.age = newValue
+        }
+    }
 }
+
+let person1 = PersonModel(name: "SwiftUI", age: 1)
+let person2 = PersonModel(name: "SwiftUI", age: 2)
 // Identifiable protocol is used when working with collections of data to identify unique elements. 
 // It provides a way for SwiftUI to differentiate one element from another, especially in contexts like List, ForEach, and ForEach-based views. 
 // You typically use Identifiable when you have a collection of identifiable items and you want to render them in a view.
