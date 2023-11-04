@@ -604,3 +604,14 @@ struct CoffeeShop {
 
 var coffeeShop = CoffeeShop(name: "Starbucks", coffee: "Cappuccino")
 coffeeShop.coffee = "Latte"
+
+let addiction: (Int, Int) -> Int = { (number: Int, number2: Int) -> Int in
+    return number + number2
+}
+
+let processClosure: (Int, (Int, Int) -> Int) = { (number: Int, closure: (Int, Int) -> Int) -> Int in
+    return closure(number, number)
+}
+
+let result = processClosure(10, addiction)
+print(result)
