@@ -616,3 +616,12 @@ let processClosure: (Int, (Int, Int) -> Int) = { (number: Int, closure: (Int, In
 
 let result = processClosure(10, addiction)
 print(result)
+
+// More about generic struct
+struct GenericStructPerson<T> {
+    var name: T
+    var age: T
+    func description() {
+        print("My name is \(name) and I'm \(age) years old.")
+    }
+}
