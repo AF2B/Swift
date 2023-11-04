@@ -889,3 +889,21 @@ struct ContentView: View {
         .padding()
     }
 }
+
+// GroupBox
+
+struct ContentView: View {
+    @State private var setting1: Bool = false
+    @State private var setting2: Bool = false
+
+    var body: some View {
+        GroupBox("Settings") {
+            VStack {
+                Toggle("Autocorrection", isOn: $setting1)
+                Toggle("Capitalization", isOn: $setting2)
+                Toggle("Editable", isOn: $setting2)
+            }
+            .padding()
+        }
+    }
+}
