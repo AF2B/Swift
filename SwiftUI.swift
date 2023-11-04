@@ -863,3 +863,29 @@ struct ContentView: View {
         .padding()
     }
 }
+
+// Stepper
+
+struct ContentView: View {
+    @State private var currentValue: Int = 0
+    @State private var goingUp: Bool = false
+
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Current Value: \(currentValue.formatted(.number.precision(.fractionLength(0))))")
+                Image(systemName: goingUp ? "arrow.up" : "arrow.down")
+                    foregroundStyle(goingUp ? .green : .red)
+                Stepper("", onIncrement: {
+                    currentValue += 5
+                    goingUp = true
+                }, onDecrement: {
+                    currentValue -= 5
+                    goingUp = false
+                }).labelsHidden()
+            }
+            Spacer()
+        }
+        .padding()
+    }
+}
