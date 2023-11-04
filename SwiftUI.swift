@@ -642,3 +642,33 @@ struct ContentView: View {
             .modifier(MyModifier(size: 20))
     }
 }
+
+// Group view
+
+struct ContentView: View {
+    var body: some View {
+        Group {
+            Text("SwiftUI")
+            Text("SwiftUI")
+            Text("SwiftUI")
+        }
+    }
+}
+
+struct ContentView: View {
+    var valid = false
+
+    var body: some View {
+        Group {
+            if valid {
+                Text("SwiftUI")
+                Text("SwiftUI")
+                Text("SwiftUI")
+            } else {
+                Text("SwiftUI")
+                Text("SwiftUI")
+                Text("SwiftUI")
+            }
+        }
+    }
+}
