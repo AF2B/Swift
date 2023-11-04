@@ -831,3 +831,21 @@ struct ContentView: View {
         }
     }
 }
+
+// SliderView
+
+struct ContentView: View {
+    @State private var currentValue: Float = 5
+    @State private var textActive: Bool = false
+
+    var body: some View {
+        VStack {
+            Text("Current Value: \(currentValue.formatted(.number.precision(.fractionLength(0))))")
+                .padding()
+                .background(textActive ? Color.yellow : Color.clear)
+            Slider(value: $currentValue, in 0...10, step: 1.0, onEditingChange: { self.textActive = $0 })
+            Spacer()
+        }
+        .padding()
+    }
+}
