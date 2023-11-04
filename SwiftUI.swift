@@ -724,3 +724,25 @@ struct ContentView: View {
             .symbolVariant(colorScheme == .dark ? .fill : .circle)
     }
 }
+
+// ButtonStyle
+
+struct MyButton: ButtonStyle {
+    func makeBody(configuration: MyButton.configuration) -> some View {
+        let pressed = configuration.isPressed
+        return configuration.label
+            .padding()
+            .scaleEffect(pressed ? 1.2 : 1.0)
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        Button(action: {
+            print("SwiftUI")
+        }) {
+            Text("SwiftUI")
+        }
+        .buttonStyle(MyButton())
+    }
+}
