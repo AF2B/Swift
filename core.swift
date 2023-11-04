@@ -566,3 +566,123 @@ case 2:
 default:
     print("Unknown")
 }
+
+// Observable
+struct CoffeeShop {
+    var name: String
+    var coffee: String {
+        didSet {
+            print("Coffee was changed to \(coffee)")
+        }
+        willSet {
+            print("Coffee will be changed to \(coffee)")
+        }
+    }
+}
+
+var coffeeShop = CoffeeShop(name: "Starbucks", coffee: "Cappuccino")
+coffeeShop.coffee = "Latte"
+
+// More about closures
+let addiction: (Int, Int) -> Int = { (number: Int, number2: Int) -> Int in
+    return number + number2
+}
+
+let processClosure: (Int, (Int, Int) -> Int) = { (number: Int, closure: (Int, Int) -> Int) -> Int in
+    return closure(number, number)
+}
+
+let result = processClosure(10, addiction)
+print(result)
+
+// More about generic struct
+struct GenericStructPerson<T> {
+    var name: T
+    var age: T
+    func description() {
+        print("My name is \(name) and I'm \(age) years old.")
+    }
+}
+
+// Error Handling
+
+struct Stock {
+    var name: String
+    var price: Double
+}
+
+enum StockError: Error {
+    case negativePrice
+    case invalidName
+}
+
+class StockErrorImplement: Error {
+    var error: StockError
+
+    var message: String {
+        switch error {
+        case .negativePrice:
+            return "Price can't be negative."
+        case .invalidName:
+            return "Name can't be empty."
+        }
+    }
+
+    init(error: StockError) {
+        self.error = error
+    }
+}
+
+class StockManager {
+    var stocks: [Stock] = []
+
+    func addStock(name: String, price: Double) throws {
+        guard price > 0 else {
+            throw StockError.negativePrice
+        }
+        guard !name.isEmpty else {
+            throw StockError.invalidName
+        }
+        let stock = Stock(name: name, price: price)
+        stocks.append(stock)
+    }
+
+    func removeStock(name: String) -> Result<Void, Error> {
+        if let index = stocks.firstIndex(where: { $0.name == name }) {
+            stocks.remove(at: index)
+            return .success(())
+        } else {
+            return .failure(StockError.invalidName)
+        }
+    }
+}
+
+let stockManager = StockManager()
+
+do {
+    try stockManager.addStock(name: "Apple", price: 3000)
+    try stockManager.addStock(name: "Google", price: 1500)
+    try stockManager.addStock(name: "Microsoft", price: 100)
+    try stockManager.addStock(name: "Facebook", price: 300)
+    try stockManager.addStock(name: "Amazon", price: 2500)
+    try stockManager.addStock(name: "TikTok", price: 0)
+} catch let error as StockError {
+    let errorImplement = StockErrorImplement(error: error)
+    print(errorImplement.message)
+}
+
+let result = stockManager.removeStock(name: "TikTok")
+switch result {
+case .success:
+    print("Stock was removed successfully.")
+case .failure:
+    print("Was not removed.")
+}
+
+// Macros
+
+func showMacros() {
+    print(" We love macros in \(#file)")
+}
+
+showMacros()
