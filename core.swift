@@ -682,7 +682,10 @@ case .failure:
 // Macros
 
 func showMacros() {
-    print(" We love macros in \(#file)")
+    print("We love macros in \(#file)")
+    print("Hi Swift Macros \(#function)")
+    print("We are in line \(#line)")
+    print("We are in column \(#column)")
 }
 
 showMacros()
