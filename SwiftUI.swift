@@ -668,6 +668,15 @@ class StockManager {
         let stock = Stock(name: name, price: price)
         stocks.append(stock)
     }
+
+    func removeStock(name: String) -> Result<Void, Error> {
+        if let index = stocks.firstIndex(where: { $0.name == name }) {
+            stocks.remove(at: index)
+            return .success(())
+        } else {
+            return .failure(StockError.invalidName)
+        }
+    }
 }
 
 let stockManager = StockManager()
@@ -682,4 +691,12 @@ do {
 } catch let error as StockError {
     let errorImplement = StockErrorImplement(error: error)
     print(errorImplement.message)
+}
+
+let result = stockManager.removeStock(name: "TikTok")
+switch result {
+case .success:
+    print("Stock was removed successfully.")
+case .failure:
+    print("Was not removed.")
 }
