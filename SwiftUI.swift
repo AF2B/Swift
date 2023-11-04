@@ -588,3 +588,19 @@ struct PersonView: View {
         }
     }
 }
+
+// Observable
+struct CoffeeShop {
+    var name: String
+    var coffee: String {
+        didSet {
+            print("Coffee was changed to \(coffee)")
+        }
+        willSet {
+            print("Coffee will be changed to \(coffee)")
+        }
+    }
+}
+
+var coffeeShop = CoffeeShop(name: "Starbucks", coffee: "Cappuccino")
+coffeeShop.coffee = "Latte"
