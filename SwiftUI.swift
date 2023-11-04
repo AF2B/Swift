@@ -782,3 +782,15 @@ struct ContentView: View {
 }
 
 // We can create onSubmit in TextField to assign a function to the return key of the keyboard.
+
+struct ContentView: View {
+    @State private var text: String = ""
+
+    var body: some View {
+        TextEditor(text: $text)
+            .multilineTextAlignment(.leading)
+            .lineSpacing(10)
+            .autocorrectionDisabled(true)
+            .padding(8) 
+    }
+}
